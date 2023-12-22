@@ -1,0 +1,1 @@
+docker build -t cloud-api -f flaskapi.Dockerfile .
