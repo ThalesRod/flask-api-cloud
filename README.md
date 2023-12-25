@@ -1,23 +1,19 @@
-## Network for communication
-```bash
-docker network create infra_network
-```
+## Flask API and NGINX proxy reverse infrastructure
 
-## Docker for API
+An easy to setup and run infrastructure using Docker and NGINX to create a web API
+
+#### Install and setup
 ```bash
+echo "API_PORT=80" >> .env
 docker build -t tek/cloud-api:1.0 -f flaskapi.Dockerfile .
-docker run -d --name cloud-api --network infra_network -d tek/cloud-api:1.0
-```
-
-## Docker for reverse proxy
-```bash
 docker build -t tek/nginx-infra:1.0 -f nginx.Dockerfile .
-docker run -d --name nginx-infra -p 80:80 --network infra_network -d tek/nginx-infra:1.0
 ```
-
-## Run with docker compose
+#### Run
 ```bash
 docker-compose up -d
 ```
 
-## Create and edit the .env file 
+#### Test
+```bash
+curl http://localhost/
+```
